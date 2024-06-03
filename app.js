@@ -3,10 +3,10 @@ const express = require("express");
 const path = require("path");
 const cookieParser = require("cookie-parser");
 
-const passport = require("passport");
 const session = require("express-session");
-const LocalStrategy = require("passport-local");
 const MongoStore = require("connect-mongo");
+
+const { strategy } = require("./config/passport");
 
 // dotenv config
 require("dotenv").config();
@@ -46,6 +46,8 @@ app.use(
    })
 );
 app.use(passport.session());
+app.use(passport.initialize());
+passport.use(strategy);
 
 app.use("/", indexRouter);
 
