@@ -10,6 +10,9 @@ const MongoStore = require("connect-mongo");
 // require strategy from the config/passport.js file
 const { strategy } = require("./config/passport");
 
+// require passport
+const passport = require("passport");
+
 // dotenv config
 require("dotenv").config();
 
