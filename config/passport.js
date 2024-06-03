@@ -3,9 +3,13 @@ const passport = require("passport");
 const User = require("../models/users");
 const bcrypt = require("bcryptjs");
 
-const strategy = new LocalStrategy(async (username, password, done) => {
+const customField = {
+   usernameField: "email",
+};
+
+const strategy = new LocalStrategy(customField, async (username, password, done) => {
    try {
-      const user = await User.findOne({ username: username });
+      const user = await User.findOne({ email: username });
       if (!user) {
          return done(null, false, { message: "Incorrect username" });
       }
