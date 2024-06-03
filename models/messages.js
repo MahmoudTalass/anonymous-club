@@ -9,4 +9,4 @@ const MessageSchema = new Schema({
    author: { type: Schema.ObjectId, ref: "User" },
 });
 
-module.exports = mongoose.Model("Message", MessageSchema);
+module.exports = mongoose.model("Message", MessageSchema);
