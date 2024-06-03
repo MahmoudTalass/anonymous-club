@@ -3,9 +3,11 @@ const express = require("express");
 const path = require("path");
 const cookieParser = require("cookie-parser");
 
+// require session and session store
 const session = require("express-session");
 const MongoStore = require("connect-mongo");
 
+// require strategy from the config/passport.js file
 const { strategy } = require("./config/passport");
 
 // dotenv config
@@ -31,6 +33,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 
+// Session setup
 app.use(
    session({
       secret: process.env.SECRET,
@@ -51,6 +54,7 @@ passport.use(strategy);
 app.use(passport.initialize());
 app.use(passport.session());
 
+// Routes
 app.use("/", indexRouter);
 
 // catch 404 and forward to error handler
