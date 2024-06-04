@@ -1,0 +1,24 @@
+extends layout
+
+block content
+    form(method="POST")
+        .form_element
+            label(for="firstname") First name
+            input(type="text" id="firstname" name="firstname" required value= user===undefined ? '' : user.firstname)
+        .form_element
+            label(for="lastname") Last name
+            input(type="text" id="lastname" name="lastname" required value= user===undefined ? '' : user.lastname)
+        .form_element
+            label(for="email") Email
+            input(type="email" id="email" name="email" required value= user===undefined ? '' : user.email)
+        .form_element
+            label(for="password") Password
+            input(type="password" id="password" name="password" required)
+        .form_element
+            label(for="password-confirmation") Confirm Password
+            input(type="password" id="password-confirmation" name="password_confirmation" required)
+        button(type="submit") Register
+        ul
+            if errors
+                each error in errors
+                    li #{error.msg}
