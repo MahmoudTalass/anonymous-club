@@ -4,10 +4,12 @@ const router = express.Router();
 /* GET home page. */
 router.get("/");
 
-router.get("/posts");
+router.get("/create-post");
 
-router.get("/post/create");
+router.post("/create-post");
 
-router.post("/post/create");
+router.get("/join-club");
+
+router.get("/admin-access");
 
 module.exports = router;
