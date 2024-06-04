@@ -25,6 +25,7 @@ async function main() {
 
 // Routes
 const indexRouter = require("./routes/index");
+const authRouter = require("./routes/auth");
 
 const app = express();
 
@@ -59,6 +60,7 @@ app.use(passport.session());
 
 // Routes
 app.use("/", indexRouter);
+app.use("/auth", authRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
