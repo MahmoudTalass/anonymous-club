@@ -11,9 +11,9 @@ router.use((req, res, next) => {
 /* GET home page. */
 router.get("/", indexController.home);
 
-router.get("/create-post");
+router.get("/create-message");
 
-router.post("/create-post");
+router.post("/create-message");
 
 router.get("/join-club", indexController.joinClubFormGet);
 
