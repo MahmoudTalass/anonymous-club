@@ -11,7 +11,7 @@ block content
       .message-container
         h3 #{message.title}
         if user
-          p By #{user.firstname}
+          p By #{message.author.firstname}
           p #{message.timestamp_formatted}
         p #{message.text}
     else
