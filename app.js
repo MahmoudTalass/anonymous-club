@@ -7,9 +7,6 @@ const cookieParser = require("cookie-parser");
 const session = require("express-session");
 const MongoStore = require("connect-mongo");
 
-// require strategy from the config/passport.js file
-const { strategy } = require("./config/passport");
-
 // require passport
 const passport = require("passport");
 
@@ -43,18 +40,18 @@ app.use(
       secret: process.env.SECRET,
       resave: false,
       saveUninitialized: true,
-      cookie: {
-         maxAge: 14 * 24 * 60 * 60,
-      },
       store: MongoStore.create({
          mongoUrl: process.env.MONGODB_URL,
          collectionName: "sessions",
       }),
+      cookie: {
+         maxAge: 14 * 24 * 60 * 60,
+      },
    })
 );
 
 // Passport config
-passport.use(strategy);
+require("./config/passport");
 app.use(passport.initialize());
 app.use(passport.session());
 

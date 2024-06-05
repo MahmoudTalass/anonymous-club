@@ -37,4 +37,4 @@ passport.deserializeUser(async (id, done) => {
    }
 });
 
-module.exports = { strategy };
+passport.use(strategy);
