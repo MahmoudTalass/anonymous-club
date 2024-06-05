@@ -4,20 +4,20 @@ html
     title= title
     meta(charset='utf-8')
     meta(name='viewport', content='width=device-width, initial-scale=1')
-    link(rel='stylesheet', href='/stylesheets/style.css')
+    link(rel="stylesheet" href="/stylesheets/style.css")
   body
     header
       h1 Anonymous Club
       .tool-bar
         if user
-          form(method="POST" action="/auth/logout")
-            button(type="submit") Logout
           a(href="/create-message") New Message
-          p #{user.firstname}
           if !user.membership
             a(href="/join-club") Member
           if !user.admin
             a(href="") Admin
+          form(method="POST" action="/auth/logout")
+            button(type="submit") Logout
+          p #{user.firstname}
         else
           a(href="/auth/login") Log in
           a(href="/auth/register") Register
