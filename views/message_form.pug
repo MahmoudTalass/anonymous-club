@@ -2,10 +2,10 @@ extends layout
 
 block content
     form(method="POST")
-        .form_element
+        .form-element
             label(for="title") Title:
             input(type="text" id="title" name="title" required value= message===undefined ? '' : message.title)
-        .form_element
+        .form-element
             label(for="message-body") Message:
             textarea(id="message-body" name="message_body" rows="5" cols="20" required placeholder="Your message...")
                 =message==undefined ? "" : message.text
