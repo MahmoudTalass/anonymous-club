@@ -3,9 +3,6 @@ extends layout
 block content
   if user
     p Welcome back #{user.firstname}!
-  else
-    a(href="/auth/login") Login
-    a(href="/auth/register") Register
   h2 Clubhouse Messages
   each message in messages
     .message-container

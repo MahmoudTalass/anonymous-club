@@ -8,5 +8,17 @@ html
   body
     header
       h1 Anonymous Club
+      .tool-bar
+        if user
+          a(href="/auth/logout") Log out
+          a(href="") New Message
+          p #{user.firstname}
+          if !user.membership
+            a(href="") Member
+          if !user.admin
+            a(href="") Admin
+        else
+          a(href="/auth/login") Log in
+          a(href="/auth/register") Register
     main
       block content
