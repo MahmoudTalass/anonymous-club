@@ -29,10 +29,18 @@ const joinClubFormPost = [
       })
       .withMessage("Incorrect password."),
    async (req, res, next) => {
-      const user = await User.findById(req.user.id);
+      const errors = validationResult(req);
+
+      const user = new User({
+         firstname: req.user.firstname,
+         lastname: req.user.lastname,
+         email: req.user.email,
+         _id: req.user.id,
+         password: req.user.password,
+      });
+
       user.membership_status = true;
 
-      const errors = validationResult(req);
       if (!errors.isEmpty()) {
          return res.render("member_form", {
             title: "Member form",
@@ -40,7 +48,9 @@ const joinClubFormPost = [
          });
       }
 
-      await user.save();
+      await User.findByIdAndUpdate(req.user.id, user, {
+         runValidators: true,
+      });
       res.redirect("/");
    },
 ];
