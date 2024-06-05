@@ -1,0 +1,19 @@
+extends layout
+
+block content
+    section.exlusive-access-form
+        p To become an admin, you must enter the correct admin password. 
+            br
+            br
+            | Admins have the ability to see the authors of messages, the date messages are posted, and the ability to delete messages.
+        br
+        br
+        form(method="POST")
+            .form-element
+                label(for="password") Password
+                input(type="password" id="password" name="password" required)
+            button(type="submit") Submit
+            ul.form-errors-list
+                if errors
+                    each error in errors
+                        li #{error.msg}

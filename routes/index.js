@@ -19,6 +19,8 @@ router.get("/join-club", indexController.joinClubFormGet);
 
 router.post("/join-club", indexController.joinClubFormPost);
 
-router.get("/admin-access");
+router.get("/admin-access", indexController.adminAccessGet);
+
+router.post("/admin-access", indexController.adminAccessPost);
 
 module.exports = router;

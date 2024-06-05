@@ -14,7 +14,7 @@ html
           if !user.membership_status
             a(href="/join-club") Member
           if !user.admin
-            a(href="") Admin
+            a(href="/admin-access") Admin
           form(method="POST" action="/auth/logout")
             button(type="submit") Logout
           p #{user.firstname}
