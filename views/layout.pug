@@ -12,7 +12,7 @@ html
         if user
           form(method="POST" action="/auth/logout")
             button(type="submit") Logout
-          a(href="") New Message
+          a(href="/create-message") New Message
           p #{user.firstname}
           if !user.membership
             a(href="/join-club") Member

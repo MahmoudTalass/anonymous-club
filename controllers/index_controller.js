@@ -45,8 +45,45 @@ const joinClubFormPost = [
    },
 ];
 
+const createMessageGet = [
+   isAuth,
+   (req, res, next) => {
+      res.render("message_form", {
+         title: "New Message",
+      });
+   },
+];
+
+const createMessagePost = [
+   isAuth,
+   body("title", "Must provide a title.").trim().notEmpty().escape(),
+   body("message_body", "Must provide a message body.").trim().notEmpty().escape(),
+   async (req, res, next) => {
+      const errors = validationResult(req);
+
+      const message = new Message({
+         title: req.body.title,
+         text: req.body.message_body,
+         author: req.user.id,
+      });
+
+      if (!errors.isEmpty()) {
+         return res.render("message_form", {
+            title: "New Message",
+            message,
+            errors: errors.array(),
+         });
+      }
+
+      await message.save();
+      res.redirect("/");
+   },
+];
+
 module.exports = {
    home,
    joinClubFormGet,
    joinClubFormPost,
+   createMessageGet,
+   createMessagePost,
 };
