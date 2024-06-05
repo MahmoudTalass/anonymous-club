@@ -17,6 +17,9 @@ block content
         .form-element
             label(for="password-confirmation") Confirm Password
             input(type="password" id="password-confirmation" name="password_confirmation" required)
+        p
+            | Already have an account? 
+            a(href="/auth/login") log in
         button(type="submit") Register
         ul
             if errors
