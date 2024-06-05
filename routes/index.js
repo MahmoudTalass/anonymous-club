@@ -15,7 +15,7 @@ router.get("/create-post");
 
 router.post("/create-post");
 
-router.get("/join-club");
+router.get("/join-club", indexController.joinClubFormGet);
 
 router.get("/admin-access");
 
