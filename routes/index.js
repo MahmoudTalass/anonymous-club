@@ -1,5 +1,6 @@
 const express = require("express");
 const router = express.Router();
+const indexController = require("../controllers/index_controller");
 
 // Enable access of user throughout the route
 router.use((req, res, next) => {
@@ -8,7 +9,7 @@ router.use((req, res, next) => {
 });
 
 /* GET home page. */
-router.get("/");
+router.get("/", indexController.home);
 
 router.get("/create-post");
 
