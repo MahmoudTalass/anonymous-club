@@ -1,16 +1,19 @@
 extends layout
 
 block content
-  if user
-    p Welcome back #{user.firstname}!
-  h2 Clubhouse Messages
-  each message in messages
-    .message-container
-      h3 #{message.title}
-      if user
-        p By #{user.firstname}
-        p #{message.timestamp_formatted}
-      p #{message.text}
-  else
-    p No messages available
+
+  .message-board-headers
+    if user
+      p.welcome-user Welcome back #{user.firstname}!
+    h2 Clubhouse Messages
+  section.messages-container
+    each message in messages
+      .message-container
+        h3 #{message.title}
+        if user
+          p By #{user.firstname}
+          p #{message.timestamp_formatted}
+        p #{message.text}
+    else
+      p No messages available
 
