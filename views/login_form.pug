@@ -2,12 +2,15 @@ extends layout
 
 block content
     form(method="POST")
-        .form_element
+        .form-element
             label(for="email") Email
             input(type="email" id="email" name="email" required value= email===undefined ? '' : email)
-        .form_element
+        .form-element
             label(for="password") Password
             input(type="password" id="password" name="password" required)
+        p 
+            | New user? 
+            a(href="/auth/register") register here 
         button(type="submit") Login
         ul
             if errors
