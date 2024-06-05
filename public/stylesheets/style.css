@@ -96,6 +96,7 @@ form button {
    background-color: var(--color3);
    border: none;
    color: #fff;
+   border-radius: var(--border-radius);
 }
 
 input {
