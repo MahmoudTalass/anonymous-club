@@ -47,7 +47,6 @@ const registerPost = [
       .notEmpty()
       .escape()
       .custom((value, { req }) => {
-         console.log(value, req.body.password);
          return value === req.body.password;
       })
       .withMessage("Passwords do not match."),
@@ -63,6 +62,7 @@ const registerPost = [
 
          if (!errors.isEmpty()) {
             return res.render("register_form", {
+               title: "Register",
                user,
                errors: errors.array(),
             });
@@ -76,23 +76,57 @@ const registerPost = [
             await user.save();
          });
 
-         res.redirect("/");
+         res.redirect("/auth/login");
       } catch (err) {
          const error = new Error("Failed to register user, please try again.");
          error.status = 409;
       }
    },
 ];
-// const login = [
-//    passport.authenticate("local", {
-//       successRedirect: "/",
-//       failureRedirect: "/",
-//       successMessage: "You are logged in!",
-//       failureMessage: "Login failure",
-//    }),
-// ];
+
+const loginGet = (req, res, next) => {
+   res.render("login_form", {
+      title: "Login",
+   });
+};
+
+const loginPost = [
+   body("email", "Must provide an email address.").trim().notEmpty().escape(),
+   body("password", "Must provide a password").trim().isLength({ min: 8 }).escape(),
+   (req, res, next) => {
+      const errors = validationResult(req);
+      if (!errors.isEmpty()) {
+         return res.render("login_form", {
+            title: "Login",
+            email: req.body.email,
+            errors: errors.array(),
+         });
+      }
+      next();
+   },
+   (req, res, next) => {
+      passport.authenticate("local", (err, user, info) => {
+         if (err) throw err;
+
+         if (info) {
+            return res.render("login_form", {
+               title: "Login",
+               email: req.body.email,
+               errors: [{ msg: info.message }],
+            });
+         }
+         req.login(user, (loginErr) => {
+            if (loginErr) throw loginErr;
+
+            res.send("<h1>success</h1>");
+         });
+      })(req, res, next);
+   },
+];
 
 module.exports = {
    registerGet,
    registerPost,
+   loginGet,
+   loginPost,
 };
