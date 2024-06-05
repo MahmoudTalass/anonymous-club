@@ -17,6 +17,8 @@ router.post("/create-post");
 
 router.get("/join-club", indexController.joinClubFormGet);
 
+router.post("/join-club", indexController.joinClubFormPost);
+
 router.get("/admin-access");
 
 module.exports = router;
