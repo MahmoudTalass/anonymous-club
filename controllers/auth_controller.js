@@ -118,15 +118,26 @@ const loginPost = [
          req.login(user, (loginErr) => {
             if (loginErr) throw loginErr;
 
-            res.send("<h1>success</h1>");
+            res.redirect("/");
          });
       })(req, res, next);
    },
 ];
+
+const logoutPost = (req, res, next) => {
+   req.logout((err) => {
+      if (err) {
+         return next(err);
+      }
+
+      res.redirect("/");
+   });
+};
 
 module.exports = {
    registerGet,
    registerPost,
    loginGet,
    loginPost,
+   logoutPost,
 };
