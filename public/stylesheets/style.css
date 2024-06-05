@@ -4,6 +4,8 @@
    box-sizing: border-box;
    --color1: #464655;
    --color2: #eddfef;
+   --color3: #2e2e38;
+   --border-radius: 0.2rem;
 }
 
 body {
@@ -67,9 +69,37 @@ main {
    display: flex;
    flex-direction: column;
    box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px -1px, rgba(0, 0, 0, 0.06) 0px 2px 4px -1px;
-   background-color: #2e2e38;
+   background-color: var(--color3);
    padding: 1rem;
    width: 600px;
    min-width: 300px;
    gap: 1rem;
+}
+
+form {
+   display: flex;
+   flex-direction: column;
+   gap: 1rem;
+   width: 500px;
+}
+
+.form-element {
+   display: flex;
+   flex-direction: column;
+   gap: 1rem;
+}
+
+form button {
+   align-self: flex-start;
+   padding: 0.5rem 1rem;
+   font-size: 1rem;
+   background-color: var(--color3);
+   border: none;
+   color: #fff;
+}
+
+input {
+   height: 1.8rem;
+   border: none;
+   border-radius: var(--border-radius);
 }
