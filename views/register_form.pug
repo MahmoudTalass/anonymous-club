@@ -21,7 +21,7 @@ block content
             | Already have an account? 
             a(href="/auth/login") log in
         button(type="submit") Register
-        ul
+        ul.form-errors-list
             if errors
                 each error in errors
                     li #{error.msg}

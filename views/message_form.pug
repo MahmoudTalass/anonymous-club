@@ -11,7 +11,7 @@ block content
                 =message==undefined ? "" : message.text
 
         button(type="submit") Create Message
-        ul
+        ul.form-errors-list
             if errors
                 each error in errors
                     li #{error.msg}

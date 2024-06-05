@@ -12,7 +12,7 @@ block content
             | New user? 
             a(href="/auth/register") register here 
         button(type="submit") Login
-        ul
+        ul.form-errors-list
             if errors
                 each error in errors
                     li #{error.msg}

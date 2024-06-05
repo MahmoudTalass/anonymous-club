@@ -11,7 +11,7 @@ block content
                 label(for="password") Password
                 input(type="password" id="password" name="password" required)
             button(type="submit") Submit
-            ul
+            ul.form-errors-list
                 if errors
                     each error in errors
                         li #{error.msg}
