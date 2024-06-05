@@ -1,8 +1,75 @@
+* {
+   padding: 0;
+   margin: 0;
+   box-sizing: border-box;
+   --color1: #464655;
+   --color2: #eddfef;
+}
+
 body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+   font-family: "Lucida Grande", Helvetica, Arial, sans-serif;
+   background-color: var(--color1);
+   color: var(--color2);
 }
 
 a {
-  color: #00B7FF;
+   color: #00b7ff;
+}
+
+header {
+   display: flex;
+   justify-content: space-between;
+   padding: 2rem;
+   align-items: center;
+}
+
+.tool-bar {
+   display: flex;
+   gap: 1rem;
+}
+
+.tool-bar a {
+   color: var(--color2);
+   text-decoration: none;
+   border-bottom: 2px solid var(--color2);
+   padding: 0.2rem;
+}
+
+.tool-bar a:hover {
+   transform: scale(1.1);
+}
+
+main {
+   margin: 2rem;
+   display: flex;
+   flex-direction: column;
+   gap: 2rem;
+}
+
+.message-board-headers {
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   gap: 2rem;
+}
+.welcome-user {
+   font-size: 2rem;
+}
+
+.messages-container {
+   display: flex;
+   flex-direction: column;
+   gap: 2rem;
+   align-items: center;
+}
+
+.message-container {
+   display: flex;
+   flex-direction: column;
+   box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px -1px, rgba(0, 0, 0, 0.06) 0px 2px 4px -1px;
+   background-color: #2e2e38;
+   padding: 1rem;
+   width: 600px;
+   min-width: 300px;
+   gap: 1rem;
 }
