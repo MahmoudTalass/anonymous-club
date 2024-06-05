@@ -8,8 +8,8 @@ block content
     .message-container
       h3 #{message.title}
       if user
-        p Author: #{user.firstname}
-        p Date: #{message.date}
+        p By #{user.firstname}
+        p #{message.timestamp_formatted}
       p #{message.text}
   else
     p No messages available
