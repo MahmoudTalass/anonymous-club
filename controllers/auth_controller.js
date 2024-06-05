@@ -1,6 +1,6 @@
 const passport = require("passport");
 const { body, validationResult } = require("express-validator");
-const User = require("../models/users");
+const User = require("../models/user");
 const bcrypt = require("bcryptjs");
 
 const registerGet = (req, res, next) => {
