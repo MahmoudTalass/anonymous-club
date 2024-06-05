@@ -114,3 +114,7 @@ textarea {
 .form-errors-list {
    color: red;
 }
+
+.exlusive-access-form {
+   width: 500px;
+}
