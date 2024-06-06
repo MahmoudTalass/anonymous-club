@@ -11,7 +11,7 @@ block content
       .message-container
         .message-header
           h3 #{message.title}
-          if user.admin
+          if user && user.admin
             form(method="POST" action="/message/"+message.id class="single-btn-form")
               button(type="submit" class="delete-message-btn") Delete
         if user
