@@ -9,7 +9,11 @@ block content
   section.messages-container
     each message in messages
       .message-container
-        h3 #{message.title}
+        .message-header
+          h3 #{message.title}
+          if user.admin
+            form(method="POST" action="/message/"+message.id)
+              button(type="submit" class="delete-message-btn") Delete
         if user
           p By #{message.author.firstname}
           p #{message.timestamp_formatted}

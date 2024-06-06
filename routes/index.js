@@ -23,4 +23,6 @@ router.get("/admin-access", indexController.adminAccessGet);
 
 router.post("/admin-access", indexController.adminAccessPost);
 
+router.post("/message/:id", indexController.deleteMessagePost);
+
 module.exports = router;

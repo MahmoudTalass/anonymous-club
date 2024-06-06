@@ -118,3 +118,13 @@ textarea {
 .exlusive-access-form {
    width: 500px;
 }
+
+.message-header {
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
+}
+
+.delete-message-btn {
+   background-color: red;
+}

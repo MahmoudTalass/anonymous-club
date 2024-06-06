@@ -134,7 +134,15 @@ const adminAccessPost = [
    },
 ];
 
-// const deleteMessagePost = [isAuth, isAdmin, (req, res, next) => {}];
+const deleteMessagePost = [
+   isAuth,
+   isAdmin,
+   async (req, res, next) => {
+      await Message.deleteOne({ _id: req.params.id }).exec();
+
+      res.redirect("/");
+   },
+];
 
 module.exports = {
    home,
@@ -144,4 +152,5 @@ module.exports = {
    createMessagePost,
    adminAccessGet,
    adminAccessPost,
+   deleteMessagePost,
 };
