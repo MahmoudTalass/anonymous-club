@@ -6,7 +6,7 @@
       "node": ">=20.13.1"
    },
    "scripts": {
-      "start": "DEBUG=anonymous-club:* npm start",
+      "start": "NODE_ENV=production node ./bin/www",
       "devstart": "nodemon ./bin/www",
       "serverstart": "DEBUG=anonymous-club:* npm run devstart"
    },
