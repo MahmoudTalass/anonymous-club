@@ -28,6 +28,7 @@ header {
 .tool-bar {
    display: flex;
    gap: 1rem;
+   align-items: center;
 }
 
 .tool-bar a {
@@ -127,4 +128,8 @@ textarea {
 
 .delete-message-btn {
    background-color: red;
+}
+
+.single-btn-form {
+   width: fit-content;
 }
