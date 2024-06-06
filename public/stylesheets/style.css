@@ -18,6 +18,11 @@ a {
    color: #00b7ff;
 }
 
+h1 a {
+   text-decoration: none;
+   color: var(--color2);
+}
+
 header {
    display: flex;
    justify-content: space-between;
