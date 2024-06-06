@@ -61,7 +61,7 @@ const joinClubFormPost = [
 
       await User.findByIdAndUpdate(req.user.id, user, {
          runValidators: true,
-      });
+      }).exec();
       res.redirect("/");
    },
 ];
@@ -158,7 +158,7 @@ const adminAccessPost = [
 
       await User.findByIdAndUpdate(req.user.id, user, {
          runValidators: true,
-      });
+      }).exec();
       res.redirect("/");
    },
 ];
