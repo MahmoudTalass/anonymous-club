@@ -3,6 +3,15 @@ const express = require("express");
 const path = require("path");
 const cookieParser = require("cookie-parser");
 
+// require production middleware
+const compression = require("compression");
+const helmet = require("helmet");
+const RateLimit = require("express-rate-limit");
+const limiter = RateLimit({
+   windowMs: 1 * 60 * 1000, // 1 minute
+   max: 20,
+});
+
 // require session and session store
 const session = require("express-session");
 const MongoStore = require("connect-mongo");
@@ -27,6 +36,11 @@ const authRouter = require("./routes/auth");
 const app = express();
 
 app.use(express.static("public"));
+
+// production middleware
+app.use(compression());
+app.use(helmet());
+app.use(limiter);
 
 // view engine setup
 app.set("views", path.join(__dirname, "views"));
