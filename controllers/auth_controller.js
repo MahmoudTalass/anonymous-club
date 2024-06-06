@@ -3,12 +3,30 @@ const { body, validationResult } = require("express-validator");
 const User = require("../models/user");
 const bcrypt = require("bcryptjs");
 
+// Render registration form
 const registerGet = (req, res, next) => {
    res.render("register_form", {
       title: "Register",
    });
 };
 
+/**
+ * Register new user.
+ *
+ * Before using the input to register a new user, validate and sanitize all the input fields.
+ *
+ * Validate that the email provided is a valid email and make sure there isn't an existing user
+ * with the given email.
+ *
+ * Validate that the password contains at least 8 characters long and include at least one lowercase
+ * letter, one uppercase letter, one digit, and one special character (e.g., !, @, #, $, %, etc.).
+ *
+ * If no validation errors are found, create a new user and a new hash password.
+ *
+ * On success, redirect user to login page.
+ * On failure of validation, re-render the form with the errors found.
+ * On other failure, pass the error using next(err).
+ */
 const registerPost = [
    body("firstname", "Must provide a first name.").trim().notEmpty().escape(),
    body("lastname", "Must provide a last name.").trim().notEmpty().escape(),
@@ -84,12 +102,24 @@ const registerPost = [
    },
 ];
 
+// Render the login form
 const loginGet = (req, res, next) => {
    res.render("login_form", {
       title: "Login",
    });
 };
 
+/**
+ * Log the user in if the credentials are correct.
+ *
+ * Validate and sanitize input before using it.
+ *
+ * Call the authenticate method from passport to run the verify function
+ * for the local strategy.
+ *
+ * If login is successful, redirect to home page, otherwise, re-render the form
+ * with the errors.
+ */
 const loginPost = [
    body("email", "Must provide an email address.").trim().notEmpty().escape(),
    body("password", "Must provide a password").trim().isLength({ min: 8 }).escape(),
@@ -123,7 +153,7 @@ const loginPost = [
       })(req, res, next);
    },
 ];
-
+// Logout user and redirect them to home page
 const logoutPost = (req, res, next) => {
    req.logout((err) => {
       if (err) {

@@ -3,6 +3,7 @@ const User = require("../models/user");
 const { isAuth, isAdmin } = require("../middlewares/auth_middleware");
 const { body, validationResult } = require("express-validator");
 
+// Render the home page with all the messages
 const home = async (req, res, next) => {
    const messages = await Message.find().populate("author").exec();
 
@@ -12,6 +13,7 @@ const home = async (req, res, next) => {
    });
 };
 
+// If user is authenticated, render the member form
 const joinClubFormGet = [
    isAuth,
    (req, res, next) => {
@@ -19,6 +21,15 @@ const joinClubFormGet = [
    },
 ];
 
+/**
+ * If user is authenticated, validate and sanitize their input.
+ * Check if it matches the expected member password.
+ *
+ * If validation passes, update the user to have a membership status
+ * set to true.
+ *
+ * If validation fails, re-render the form with the errors.
+ */
 const joinClubFormPost = [
    isAuth,
    body("password", "Must specify a password")
@@ -55,6 +66,7 @@ const joinClubFormPost = [
    },
 ];
 
+// If user is authenticated, render the new message form
 const createMessageGet = [
    isAuth,
    (req, res, next) => {
@@ -64,6 +76,13 @@ const createMessageGet = [
    },
 ];
 
+/**
+ * If user is authenticated, validate and sanitize their message input.
+ *
+ * If validation passes, create a new message.
+ *
+ * If validation fails, re-render the form with the errors.
+ */
 const createMessagePost = [
    isAuth,
    body("title", "Must provide a title.").trim().notEmpty().escape(),
@@ -90,12 +109,22 @@ const createMessagePost = [
    },
 ];
 
+// If user is authenticated, render the admin form
 const adminAccessGet = (req, res, next) => {
    res.render("admin_form", {
       title: "Admin form",
    });
 };
 
+/**
+ * If user is authenticated, validate their admin password input against admin
+ * admin password.
+ *
+ * If they provided the correct input, update the user's model to have the admin
+ * role and the member role set to true.
+ *
+ * If the input is incorrect, re-render the form with the error.
+ */
 const adminAccessPost = [
    isAuth,
    body("password", "Must specify a password.")
@@ -134,6 +163,10 @@ const adminAccessPost = [
    },
 ];
 
+/**
+ * If a user is authenticated and is an admin, delete the message
+ * with the id found in url params.
+ * */
 const deleteMessagePost = [
    isAuth,
    isAdmin,
